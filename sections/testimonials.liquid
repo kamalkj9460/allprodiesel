@@ -16,7 +16,12 @@
 {% endcapture %}
 
 {% if testimonials != blank %}
-<link rel="stylesheet" href="{{ 'client-testimonials.css' | asset_url }}" media="print" onload="this.media='all'">
+{% if template contains 'index' or template contains 'collection' or template contains 'product' %}
+    
+{% else %}
+    <style>.client-testimonials-wrapper{background:#F9F9FA}.client-testimonials-wrapper .sec-head{margin-bottom:48px}.testimonials-list-wrapper{width:100%;position:relative}.testimonials-list-wrapper .slide-arrows{position:absolute;z-index:1;right:0;top:-94px;display:flex}.testimonials-list-wrapper .slide-arrows .slide-arrow{border:none;background:transparent;height:30px;width:30px;display:flex;padding:0;cursor:pointer}.testimonials-list-wrapper .slide-arrows .slide-arrow.next{margin-left:40px}.testimonials-wrapper{width:100%;display:flex}.testimonials-wrapper .testi-item{width:387px;background:#FFFFFF;border-radius:10px;padding:50px 45px;margin-right:20px;display:flex;flex-flow:column}.testimonials-wrapper .testi-item .review-star{display:flex;margin-bottom:22px}.testimonials-wrapper .testi-item .review-text,.testimonials-wrapper .testi-item .review-text p{font-style:normal;font-weight:400;font-size:16px;line-height:24px;color:#646473}.testimonials-wrapper .testi-item .author{font-style:normal;font-weight:800;font-size:16px;line-height:22px;color:#252222;margin-top:25px}@media screen and (max-width: 749px){.client-testimonials-wrapper .sec-head{margin-bottom:30px}.testimonials-list-wrapper{width:auto;margin-right:-20px}.testimonials-list-wrapper .slide-arrows{display:none}.testimonials-wrapper .testi-item{width:310px;border-radius:15px;padding:30px;margin-right:10px}.testimonials-wrapper .testi-item .review-star{margin-bottom:13px}.testimonials-wrapper .testi-item .review-text,.testimonials-wrapper .testi-item .review-text p{font-style:normal;font-weight:400;font-size:14px;line-height:20px}.testimonials-wrapper .testi-item .author{font-style:normal;font-weight:800;font-size:14px;line-height:20px;margin-top:15px}}</style>
+{% endif %}
+<link rel="stylesheet" data-href="{{ 'client-testimonials.css' | asset_url }}">
 <noscript>{{ 'client-testimonials.css' | asset_url | stylesheet_tag }}</noscript>
 
 <section id="section{{ section.id }}">
@@ -42,7 +47,7 @@
   </div>
 </section>
 
-<script defer="defer">
+<script type="lazyload_int">
   
   $(document).ready(function(){
   if($(window).width() > 992){
@@ -152,5 +157,3 @@
   }
 {% endschema %}
 
-{% stylesheet %}
-{% endstylesheet %}

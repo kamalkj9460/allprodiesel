@@ -3,18 +3,19 @@
   class="page-width section-{{ section.id }}-padding"
   data-section="{{ section.id }}"
 >
-  {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-  {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
-  {{ 'component-price.css' | asset_url | stylesheet_tag }}
-  {{ 'component-rte.css' | asset_url | stylesheet_tag }}
-  {{ 'component-slider.css' | asset_url | stylesheet_tag }}
-  {{ 'component-rating.css' | asset_url | stylesheet_tag }}
-  {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
-  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
-  {{ 'product-main.css' | asset_url | stylesheet_tag }}
+  
+  <link rel="stylesheet" data-href="{{ 'section-main-product.css' | asset_url }}">
+  <link rel="stylesheet" data-href="{{ 'component-accordion.css' | asset_url }}">
+  <link rel="stylesheet" data-href="{{ 'component-price.css' | asset_url }}">
+  <link rel="stylesheet" data-href="{{ 'component-rte.css' | asset_url }}">
+  <link rel="stylesheet" data-href="{{ 'component-slider.css' | asset_url }}">
+  <link rel="stylesheet" data-href="{{ 'component-rating.css' | asset_url }}">
+  <link rel="stylesheet" data-href="{{ 'component-loading-overlay.css' | asset_url }}">
+  <link rel="stylesheet" data-href="{{ 'component-deferred-media.css' | asset_url }}">
+  <link rel="stylesheet" data-href="{{ 'product-main.css' | asset_url }}">
 
 
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script type="lazyload_int" data-src="{{ 'product-form.js' | asset_url }}"></script>
 
   {%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
   {%- if first_3d_model -%}
@@ -157,9 +158,9 @@
                   data-media-position="{{ media_index }}"
                 >
                   <figure>
-                    <img
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-class="LazyLoad"
                       id="Thumbnail-{{ section.id }}-0"
-                      srcset="
+                      data-srcset="
                         {% if featured_media.preview_image.width >= 54 %}{{ featured_media.preview_image | image_url: width: 54 }} 54w,{% endif %}
                         {% if featured_media.preview_image.width >= 74 %}{{ featured_media.preview_image | image_url: width: 74 }} 74w,{% endif %}
                         {% if featured_media.preview_image.width >= 104 %}{{ featured_media.preview_image | image_url: width: 104 }} 104w,{% endif %}
@@ -169,7 +170,7 @@
                         {% if featured_media.preview_image.width >= 416 %}{{ featured_media.preview_image | image_url: width: 416 }} 416w,{% endif %},
                         {{ featured_media.preview_image | image_url }} {{ media.preview_image.width }}w
                       "
-                      src="{{ featured_media | image_url: width: 416 }}"
+                      data-src="{{ featured_media | image_url: width: 416 }}"
                       sizes="(min-width: {{ settings.page_width }}px) calc(({{ settings.page_width | minus: 100 | times: media_width | round }} - 4rem) / 4), (min-width: 990px) calc(({{ media_width | times: 100 }}vw - 4rem) / 4), (min-width: 750px) calc((100vw - 15rem) / 8), calc((100vw - 14rem) / 3)"
                       alt="{{ featured_media.alt | escape }}"
                       height="208"
@@ -209,9 +210,9 @@
                       </span>
                     {%- endif -%}
                     <figure>
-                      <img
+                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-class="LazyLoad"
                         id="Thumbnail-{{ section.id }}-{{ forloop.index }}"
-                        srcset="
+                        data-srcset="
                           {% if media.preview_image.width >= 59 %}{{ media.preview_image | image_url: width: 59 }} 59w,{% endif %}
                           {% if media.preview_image.width >= 118 %}{{ media.preview_image | image_url: width: 118 }} 118w,{% endif %}
                           {% if media.preview_image.width >= 84 %}{{ media.preview_image | image_url: width: 84 }} 84w,{% endif %}
@@ -219,7 +220,7 @@
                           {% if media.preview_image.width >= 130 %}{{ media.preview_image | image_url: width: 130 }} 130w,{% endif %}
                           {% if media.preview_image.width >= 260 %}{{ media.preview_image | image_url: width: 260 }} 260w{% endif %}
                         "
-                        src="{{ media | image_url: width: 84, height: 84 }}"
+                        data-src="{{ media | image_url: width: 84, height: 84 }}"
                         sizes="(min-width: 1200px) calc((1200px - 19.5rem) / 12), (min-width: 750px) calc((100vw - 16.5rem) / 8), calc((100vw - 8rem) / 5)"
                         alt="{{ media.alt | escape }}"
                         height="200"
@@ -268,7 +269,7 @@
                       {% if shop.metafields.custom.vendor_image[forloop.index0] != blank %}
                         <span class="vendor-logo">
                         {% assign img = shop.metafields.custom.vendor_image[forloop.index0] | first %}
-                        <img src="{{ img.src }}"/>
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-class="LazyLoad" data-src="{{ img.src }}"/>
                         </span>
                       {% endif %}
                     {% endif %}
@@ -570,7 +571,7 @@
                   </div>
                 </details>
               </share-button>
-              <script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
+              <script type="lazyload_int" data-src="{{ 'share.js' | asset_url }}" ></script>
             {%- when 'variant_picker' -%}
               {%- unless product.has_only_default_variant -%}
                 {%- if block.settings.picker_type == 'button' -%}
@@ -870,7 +871,7 @@
                 {% endcomment %}
               </div>
 
-              <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
+              <script type="lazyload_int" data-src="{{ 'pickup-availability.js' | asset_url }}" ></script>
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
                 {% liquid
@@ -1077,15 +1078,15 @@
   {%- endfor -%}
 
   {%- if product.media.size > 0 -%}
-    <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+    <script type="lazyload_int" data-src="{{ 'product-modal.js' | asset_url }}" ></script>
+    <script type="lazyload_int" data-src="{{ 'media-gallery.js' | asset_url }}" ></script>
   {%- endif -%}
 
   {%- if first_3d_model -%}
     <script type="application/json" id="ProductJSON-{{ product.id }}">
       {{ product.media | where: 'media_type', 'model' | json }}
     </script>
-    <script src="{{ 'product-model.js' | asset_url }}" defer></script>
+    <script type="lazyload_int" data-src="{{ 'product-model.js' | asset_url }}" ></script>
   {%- endif -%}
   
 
@@ -1094,7 +1095,7 @@
   {% render 'waitlist-popup' %}
   {% endcomment %}
         
-  <script>
+  <script type="lazyload_int">
     document.addEventListener('DOMContentLoaded', function() {
       function isIE() {
         const ua = window.navigator.userAgent;

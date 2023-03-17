@@ -3,14 +3,19 @@
       {% if block.settings.img != blank %}
       <div class="brand-item">
           {% if block.settings.btnurl != blank %}<a class="navigate-link" href="{{ block.settings.btnurl }}"></a>{% endif %}
-          <figure class="brand-img"><img src="{{ block.settings.img | img_url:"master" }}" /></figure>
+          <figure class="brand-img"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-class="LazyLoad" data-src="{{ block.settings.img | img_url:"master" }}" /></figure>
       </div>
     {% endif %}
   {% endfor %}
 {% endcapture %}
 
 {% if brandItems != blank %}
-<link rel="stylesheet" href="{{ 'shop-by-brand.css' | asset_url }}" media="print" onload="this.media='all'">
+{% if template contains 'index' or template contains 'collection' or template contains 'product' %}
+    
+{% else %}
+    <style>.shop-by-brand-wrapper{width:100%}.shop-by-brand-list{width:100%;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;gap:20px}.shop-by-brand-list .brand-img{margin:0;position:relative;background:#F9F9FA;border-radius:10px}.shop-by-brand-list .brand-img:before{content:"";width:100%;padding-bottom:87.275%;display:flex}.shop-by-brand-list .brand-img img{height:66px;width:auto;max-width:90%;object-fit:contain;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}.shop-by-brand-list .brand-item{position:relative}.shop-by-brand-list .brand-item .navigate-link{display:block;position:absolute;width:100%;height:100%;z-index:1}@media screen and (max-width: 989px){.shop-by-brand-list{grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:20px}}@media screen and (max-width: 749px){.shop-by-brand-list{grid-template-columns:1fr 1fr 1fr;gap:10px}.shop-by-brand-list .brand-img:before{padding-bottom:100%}}</style>
+{% endif %}
+<link rel="stylesheet" data-href="{{ 'shop-by-brand.css' | asset_url }}">
 <noscript>{{ 'shop-by-brand.css' | asset_url | stylesheet_tag }}</noscript>
 
 <section id="section{{ section.id }}">

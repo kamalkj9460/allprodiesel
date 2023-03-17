@@ -7,7 +7,7 @@
       {% if block.settings.collection != blank %}<a class="navigate-link" href="{{ block.settings.collection.url }}"></a>{% endif %}
       {% if block.settings.img != blank %}
         <figure class="cate-img">
-          <img src="{{ block.settings.img | img_url:"master" }}" />
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-class="LazyLoad" data-src="{{ block.settings.img | img_url:"master" }}" />
         </figure>
       {% endif %}
        {% if block.settings.title != blank %}<h3 class="cate-title">{{ block.settings.title }}</h3>{% endif %}
@@ -17,7 +17,12 @@
 {% endcapture %}
 
 {% if catItems != blank %}
-<link rel="stylesheet" href="{{ 'top-categories.css' | asset_url }}" media="print" onload="this.media='all'">
+{% if template contains 'index' or template contains 'collection' or template contains 'product' %}
+    
+{% else %}
+    <style>.categories-list-wrapper{position:relative;width:100%}.categories-list-wrapper .slide-arrows{position:absolute;z-index:1;right:0;top:-94px;display:flex}.categories-list-wrapper .slide-arrows .slide-arrow{border:none;background:transparent;height:30px;width:30px;display:flex;padding:0;cursor:pointer}.categories-list-wrapper .slide-arrows .slide-arrow.next{margin-left:40px}.top-categories{width:100%;display:flex}.top-categories .category-item{display:flex;flex-flow:column;width:100%;max-width:224px;margin-right:20px;position:relative}.top-categories .category-item .navigate-link{position:absolute;width:100%;height:100%;display:block;z-index:1}.top-categories .category-item .cate-img{margin:0;background:#F9F9FA;border-radius:10px;position:relative;width:100%}.top-categories .category-item .cate-img:before{content:"";width:100%;padding-bottom:100%;display:flex}.top-categories .category-item .cate-img img{position:absolute;left:50%;top:50%;height:100%;width:100%;object-fit:contain;transform:translate(-50%,-50%);max-width:80%;max-height:130px}.top-categories .category-item .cate-title{font-style:normal;font-weight:800;font-size:16px;line-height:22px;color:#252222;margin:20px 0 0}@media screen and (max-width: 749px){.categories-list-wrapper{position:relative;width:auto;margin-right:-20px}.categories-list-wrapper .slide-arrows{display:none}.top-categories .category-item{max-width:150px;margin-right:10px}.top-categories .category-item .cate-title{font-style:normal;font-weight:800;font-size:14px;line-height:20px;margin:10px 0 0}}</style>
+{% endif %}
+<link rel="stylesheet" data-href="{{ 'top-categories.css' | asset_url }}">
 <noscript>{{ 'top-categories.css' | asset_url | stylesheet_tag }}</noscript>
 
 <section id="section{{ section.id }}">
@@ -47,7 +52,7 @@
   </div>
 </section>
 
-<script defer="defer">
+<script type="lazyload_int">
   
   $(document).ready(function(){
   if($(window).width() > 992){
@@ -130,8 +135,7 @@
   }
 {% endschema %}
 
-{% stylesheet %}
-{% endstylesheet %}
+
 
 
 

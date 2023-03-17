@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ 'announcement.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" data-href="{{ 'announcement.css' | asset_url }}">
 <noscript>{{ 'announcement.css' | asset_url | stylesheet_tag }}</noscript>
 
 {%- for block in section.blocks -%}
