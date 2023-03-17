@@ -1,0 +1,73 @@
+{% capture brandItems %}
+  {% for block in section.blocks %}
+      {% if block.settings.img != blank %}
+      <div class="brand-item">
+          {% if block.settings.btnurl != blank %}<a class="navigate-link" href="{{ block.settings.btnurl }}"></a>{% endif %}
+          <figure class="brand-img"><img src="{{ block.settings.img | img_url:"master" }}" /></figure>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% if brandItems != blank %}
+<link rel="stylesheet" href="{{ 'shop-by-brand.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'shop-by-brand.css' | asset_url | stylesheet_tag }}</noscript>
+
+<section id="section{{ section.id }}">
+  <div class="page-width">
+
+    {% if section.settings.title != blank %}
+      <div class="sec-head">
+         <h2 class="sec-title">{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+    
+     <div class="shop-by-brand-list">
+       {{ brandItems }}
+     </div>
+         
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Shop by brand",
+    "class": "section-space shop-by-brand-wrapper",
+    "settings": [
+      { 
+        "type": "html",
+        "id": "title",
+        "label": "Title",
+        "default":"Shop by <span>brand",
+        "info":"Add <span></span> tag for different text color"
+      }
+    ],
+    "blocks": [
+        {
+          "type": "text",
+          "name": "Brand",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "img",
+              "label": "Image"
+            },
+            { 
+              "type": "url",
+              "id": "btnurl",
+              "label": "Url to Navigate"
+            }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Shop by brand"        
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}

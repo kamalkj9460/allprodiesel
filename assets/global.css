@@ -1,0 +1,317 @@
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Light.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-LightItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Regular.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Italic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Medium.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-MediumItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-SemiBold.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-SemiBoldItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Bold.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-BoldItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-BoldItalic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-ExtraBoldItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-ExtraBoldItalic.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Black.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-BlackItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+body { font-family: 'Red Hat Display'; font-weight: 400; letter-spacing: 0; }
+
+.field__input, 
+.select__select, 
+.customer .field input, 
+.customer select,
+.field__label { font-family: 'Red Hat Display'; letter-spacing: 0; }
+
+
+a, button, .tab-icon { transition: all .2s ease; }
+    
+
+
+
+h1, h2, h3, h4, h5, .h0, .h1, .h2, .h3, .h4, .h5 { font-family: 'Red Hat Display'; font-weight: 800; letter-spacing: 0; }
+
+h1, .h1{
+  font-size: 64px;
+}
+h2, .h2, .pro-review-section .jdgm-rev-widg__title{
+  font-size: 40px;
+}
+h3, .h3{
+  font-size: 36px;
+}
+h4, .h4{
+  font-size: 30px;
+}
+h5, .h5{
+  font-size: 26px;
+}
+h6, .h6{
+  font-size: 16px;
+}
+
+.section-padding { padding-top: 115px; padding-bottom: 115px; }
+.section-space { margin-top:115px; margin-bottom:115px; }
+
+.sec-title { font-style: normal; font-weight: 800; font-size: 40px; line-height: 50px; color: #252222; }
+.sec-title span { color:#AA3028; }  
+
+.sec-head { margin-bottom:60px; }
+.sec-head .sec-title { margin:0; }
+
+.template-login div#rc_login{
+  display: none;
+}
+.customer button:before, .customer button:after{
+  display: none;
+}
+.customer button{
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: .03em;
+  padding: 15px 35px;
+  border-radius: 3px;
+  color: #ffffff;
+  background: #aa3028;
+}
+.customer button:hover {
+    color: #ffffff;
+    background: #121212;
+}
+body .shopify-policy__container{
+  max-width: 1300px;
+      padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+@media screen and (max-width: 1199px){
+  .section-padding{
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .section-space { margin-top:80px; margin-bottom:80px; }
+  
+  h1, .h1{
+    font-size: 54px;
+  }
+  h2, .h2, .pro-review-section .jdgm-rev-widg__title{
+    font-size: 36px;
+  }
+  h3, .h3{
+    font-size: 34px;
+  }
+  h4, .h4{
+    font-size: 28px;
+  }
+  h5, .h5{
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 989px){
+  .section-padding{
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+
+
+  .section-space { margin-top:55px; margin-bottom:55px; }
+  
+  h1, .h1{
+    font-size: 48px;
+  }
+  h2, .h2, .pro-review-section .jdgm-rev-widg__title{
+    font-size: 32px;
+  }
+  h3, .h3{
+    font-size: 30px;
+  }
+  h4, .h4{
+    font-size: 24px;
+  }
+  h5, .h5{
+    font-size: 20px;
+  }
+  h6, .h6{
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 749px){
+
+  .page-width { padding: 0 20px; }
+    
+  h1, .h1{
+    font-size: 45px;
+  }
+  h2, .h2, .pro-review-section .jdgm-rev-widg__title{
+    font-size: 28px;
+  }
+  h3, .h3{
+    font-size: 24px;
+  }
+  h4, .h4{
+    font-size: 22px;
+  }
+  h5, .h5{
+    font-size: 17px;
+  }
+
+  .sec-head {  margin-bottom: 30px; }
+  .sec-head .sec-title { font-style: normal; font-weight: 800; font-size: 28px; line-height: 34px; }
+  body .shopify-policy__container{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+
+
+
+/* Cart page */
+
+cart-items .title-wrapper-with-link .title { font-size: 32px; line-height: 1; }
+cart-items .cart-items .cart-item__details .cart-item__name { font-size:16px; font-weight:600; }
+
+.shopify-challenge__container .shopify-challenge__button { margin: 20px auto 0 auto; }
+
+/* & Cart page */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* end */

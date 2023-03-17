@@ -1,0 +1,122 @@
+<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-product-recommendations.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-price.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'section-product-recommendations.css' | asset_url | stylesheet_tag }}</noscript>
+
+{{ 'card-product.css' | asset_url | stylesheet_tag }}
+
+<div class=" gradient no-js-hidden">
+  <product-recommendations class="product-recommendations page--width isolate" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=8" id="{{ section.id }}">
+    <div class="row">
+      {% if recommendations.performed and recommendations.products_count > 0 %}
+        <div class="page-width">
+          <div class="section-title-wrap">
+            <h2 class="h2 product-recommendations__heading">{{ section.settings.heading | escape }}</h2>
+            <div class="slide-arrows small-hide medium-hide {% if size <= 5 %} hidden{% endif %}">
+               <button class="slide-arrow prev">{% render 'icon-prev' %}</button>
+               <button class="slide-arrow next">{% render 'icon-next' %}</button>
+            </div>
+          </div>
+        </div>
+        <div class="page-width prod-rec-width">
+          <ul class="prod-rec-wrapper" role="list" data-pro-rec-slider>
+            {% for recommendation in recommendations.products %}
+              <li class="prod-rec-item">
+                {% render 'card-product',
+                  card_product: recommendation,
+                  media_aspect_ratio: 'square',
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  show_instock: section.settings.show_instock
+                %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+  </product-recommendations>
+</div>
+
+<script defer="defer">
+  
+  $(document).ready(function(){
+
+    // setTimeout(function(){
+    //   console.log("slider");
+    //   $('product-recommendations').removeClass("hidden");
+    //   $('product-recommendations [data-pro-rec-slider]').slick({
+    //     dots: false,
+    //     infinite: true,
+    //     speed: 300,
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1,
+    //     variableWidth: true,
+    //     prevArrow: $('#section{{ section.id }} .prev'),
+    //     nextArrow: $('#section{{ section.id }} .next'),
+    //     responsive: [
+    //     {
+    //       breakpoint: 992,
+    //       settings:"unslick"
+    //     }
+    //   ]
+    //  });
+    //   },10000);
+
+  });
+  
+</script>
+
+
+{% schema %}
+{
+  "name": "t:sections.product-recommendations.name",
+  "tag": "section",
+  "class": "section product-recomm-section section-padding",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.product-recommendations.settings.paragraph__1.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "You may also like",
+      "label": "t:sections.product-recommendations.settings.heading.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.product-recommendations.settings.header__2.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.product-recommendations.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.product-recommendations.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.product-recommendations.settings.show_rating.label",
+      "info": "t:sections.product-recommendations.settings.show_rating.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_instock",
+      "default": true,
+      "label": "Show In-Stock Label"
+    }
+  ]
+}
+{% endschema %}

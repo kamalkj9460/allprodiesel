@@ -1,0 +1,110 @@
+<script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+<script>
+    var klaviyo = klaviyo || [];
+    klaviyo.init({
+      account: "QcJedx",
+      platform: "shopify"
+    });
+    klaviyo.enable("backinstock",{ 
+    trigger: {
+      product_page_text: "Notify Me When Available",
+      product_page_class: "bttn bttn--full",
+      product_page_text_align: "center",
+      product_page_margin: "0px",
+      replace_anchor: false
+    },
+    modal: {
+     headline: "Inform when this item available",
+     headers_font_family: "Red Hat Display",
+     font_family: 'Red Hat Display',
+     body_content: "International Door Handle | Replaces International 3550930C91",
+     email_field_label: "Your Email",
+     button_label: "Receive Email",
+     subscription_success_label: "We'll let you know when it's back in stock.",
+     footer_content: '',
+     additional_styles: `
+
+     @font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Regular.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0053/0730/1991/files/RedHatDisplay-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+     body{padding:0;margin:0}
+
+
+     
+     div#klaviyo-bis-modal {
+        max-width: 590px;
+        width:100%;
+        padding: 0px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+     }
+#klaviyo-bis-modal #container{margin:0;padding:50px;border-radius:10px;}
+#klaviyo-bis-modal .close{top:25px;right:25px;z-index: 1;width: 14px;height: 14px;overflow: hidden;color: transparent;}
+#klaviyo-bis-modal .close::before{content: "";position: absolute;top: 0;left: 0;background-image: url(https://cdn.shopify.com/s/files/1/0053/0730/1991/files/klaviyo-popup-close.svg?v=1678081514);
+    background-size: contain;z-index: 11;width: 14px;height: 14px;}
+form.form-horizontal.clearfix {flex-direction: column;max-width: 250px;
+}
+
+h3.modal-title {
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 34px;
+    color: #252222;
+}
+
+.modal-title + p {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 22px;
+    color: #AA3028;
+    margin:8px 0 30px;
+}
+form.form-horizontal.clearfix{max-width:100%;}
+form input#email{height:54px;border: 1px solid #E6E6F1;border-radius:4px;}
+form input#email::placeholder{font-family: 'Red Hat Display';font-size: 16px;color: #B1B1BC;}
+form.form-horizontal .form-group{margin:0;}
+.submit-container{margin-top: 16px;}
+form .btn.btn-success{width: 100%;font-size: 16px;line-height: 21px;text-align: center;letter-spacing: 0.03em;color: #FFFFFF;background: #AA3028;border-radius: 3px;border:none;height:51px;}
+p.small-print:empty{display:none;}
+
+@media(max-width:749px){
+
+div#klaviyo-bis-modal{max-width: calc(100% - 40px);}
+#klaviyo-bis-modal #container{padding:30px 20px;}
+#klaviyo-bis-modal .close{top:15px;right:15px;}
+h3.modal-title {font-size: 22px;line-height: 28px;}
+.modal-title + p{font-size: 14px;line-height: 20px;margin:10px 0 24px;}
+form input#email::placeholder{font-size: 14px;}
+form input#email{height:50px;}
+.submit-container{margin-top:12px;}
+form .btn.btn-success{font-size: 14px;line-height: 19px;height:45px;}
+}
+      `,
+     drop_background_color: "#000",
+     background_color: "#fff",
+     text_color: "#222",
+     button_text_color: "#fff",
+     button_background_color: "#439fdb",
+     close_button_color: "#ccc",
+     error_background_color: "#fcd6d7",
+     error_text_color: "#C72E2F",      
+     success_background_color: "#d3efcd",
+     success_text_color: "#1B9500"
+    }
+  });
+</script>

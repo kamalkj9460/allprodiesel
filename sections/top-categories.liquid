@@ -1,0 +1,138 @@
+{% assign size = 0 %}
+{% capture catItems %}
+  {% for block in section.blocks %}
+    {% if block.settings.title != blank or block.settings.img != blank %}
+      {% assign size = size | plus:1 %}
+    <div class="category-item">
+      {% if block.settings.collection != blank %}<a class="navigate-link" href="{{ block.settings.collection.url }}"></a>{% endif %}
+      {% if block.settings.img != blank %}
+        <figure class="cate-img">
+          <img src="{{ block.settings.img | img_url:"master" }}" />
+        </figure>
+      {% endif %}
+       {% if block.settings.title != blank %}<h3 class="cate-title">{{ block.settings.title }}</h3>{% endif %}
+    </div>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% if catItems != blank %}
+<link rel="stylesheet" href="{{ 'top-categories.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'top-categories.css' | asset_url | stylesheet_tag }}</noscript>
+
+<section id="section{{ section.id }}">
+  <div class="page-width">
+  
+    {% if section.settings.title != blank %}
+    <div class="sec-head">
+       <h2 class="sec-title">{{ section.settings.title }}</h2>
+    </div>
+    {% endif %}
+
+    <div class="categories-list-wrapper">
+     
+      <div class="slide-arrows{% if size <= 5 %} hidden{% endif %}">
+         <button class="slide-arrow prev">{% render 'icon-prev' %}</button>
+         <button class="slide-arrow next">{% render 'icon-next' %}</button>
+      </div>
+      
+      <div class="top-categories{% if size > 5 %} enabled{% endif %}">
+  
+        {{ catItems }}
+        
+      </div>
+      
+    </div>
+         
+  </div>
+</section>
+
+<script defer="defer">
+  
+  $(document).ready(function(){
+  if($(window).width() > 992){
+      $('.top-categories.enabled').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        variableWidth: true,
+        prevArrow: $('#section{{ section.id }} .prev'),
+        nextArrow: $('#section{{ section.id }} .next'),
+        responsive: [
+        {
+          breakpoint: 993,
+          settings:'unslick'
+           
+        }
+      ]
+     });
+  }else{
+  $('.top-categories').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToScroll: 1,
+        variableWidth: true,
+        prevArrow: $('#section{{ section.id }} .prev'),
+        nextArrow: $('#section{{ section.id }} .next'),
+     });
+  }
+
+  });
+  
+</script>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Top Categories",
+    "class": "section-space top-categories-wrapper",
+    "settings": [
+      { 
+        "type": "html",
+        "id": "title",
+        "label": "Title",
+        "default":"Top <span>Categories</span>",
+        "info":"Add <span></span> tag for different text color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Category",
+        "settings": [
+          { 
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Top Categories"        
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+
+
+ 

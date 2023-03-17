@@ -1,0 +1,56 @@
+.service-box-wrapper { width:100%; background: #AA3028; color:#fff; overflow: hidden;}
+
+.service-box-wrapper .service-box { display:flex; gap:126px; }
+.service-box-wrapper .service-box .box-item { width:100%; padding:61px 0; position:relative; }
+.service-box-wrapper .service-box .box-item:not(:last-child):before {  content: ""; position: absolute; background:#FFFFFF; width: 1px; height: 100%; top: 0; right: -63px; }
+
+.service-box-wrapper .service-box .box-item .item-icon { display:flex; }
+.service-box-wrapper .service-box .box-item .box-title { font-style: normal; font-weight: 800; font-size: 18px; line-height: 24px; margin:20px 0 10px 0; color:#fff; }
+.service-box-wrapper .service-box .box-item .content,
+.service-box-wrapper .service-box .box-item .content p { font-style: normal; font-weight: 400; font-size: 14px; line-height: 19px; color:#fff; margin-top:0; }
+.service-box-wrapper .service-box .box-item .content p:last-child { margin-bottom:0; }
+
+
+@media screen and (max-width: 990px) {
+
+  .service-box-wrapper .service-box { gap: 80px; }  
+  .service-box-wrapper .service-box .box-item { width: 100%; padding: 40px 0; }
+  .service-box-wrapper .service-box .box-item:not(:last-child):before { right: -40px; }
+  
+}
+
+@media screen and (max-width: 640px) {
+
+  .service-box-wrapper .service-box { display: flex; flex-flow: column; gap:0; }
+  .service-box-wrapper .service-box .box-item:not(:last-child) { border-right: none; border-bottom: 1px solid #FFFFFF; }
+
+  .service-box-wrapper .service-box .box-item { width: 100%;  padding: 30px 0; }
+
+  .service-box-wrapper .service-box .box-item .item-icon { width:24px; height:auto; }
+  .service-box-wrapper .service-box .box-item .item-icon svg { width:100%; height:auto; }
+
+  .service-box-wrapper .service-box .box-item .box-title { font-style: normal; font-weight: 800; font-size: 14px; line-height: 20px; margin: 15px 0 5px; }
+  
+  .service-box-wrapper .service-box .box-item .content { max-width:335px; }
+  .service-box-wrapper .service-box .box-item .content, 
+  .service-box-wrapper .service-box .box-item .content p { font-style: normal; font-weight: 400; font-size: 14px; line-height: 20px; }
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* end */

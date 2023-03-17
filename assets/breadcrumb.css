@@ -1,0 +1,42 @@
+body .g-breadcrumb, body .g-breadcrumb a{
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+}
+body .g-breadcrumb{
+    background: #F9F9FA;
+    text-transform: uppercase;
+  color: #B1B1BC;
+}
+body .g-breadcrumb a{
+  color: #646473;
+  
+}
+body .g-breadcrumb a, body .g-breadcrumb span{
+  font-weight: normal; 
+}
+
+@media screen and (max-width: 1199px){
+  body .g-breadcrumb, body .g-breadcrumb a{
+    font-size: 11px;
+  }
+  body .g-breadcrumb.breadcrumbs-style_1 {
+    padding: 10px 0;
+  }
+  body .g-breadcrumb a, body .g-breadcrumb span{
+    line-height: 1.6;
+  }
+}
+@media screen and (max-width: 989px){
+  body .g-breadcrumb, body .g-breadcrumb a{
+    font-size: 10px;
+  }
+  body .g-breadcrumb.breadcrumbs-style_1 {
+    padding: 5px 0;
+  }
+}
+@media screen and (max-width: 749px){
+  body .g-breadcrumb, body .g-breadcrumb a{
+    font-size: 9px;
+  }
+}

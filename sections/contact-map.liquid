@@ -1,0 +1,27 @@
+{% if section.settings.map != blank %}
+{{ 'contact-map.css' | asset_url | stylesheet_tag }}
+
+<div class="map-box">
+  {{ section.settings.map }}
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Contact map",
+    "class": "contact-map",
+    "settings": [
+     {
+        "type": "textarea",
+        "id": "map",
+        "label": "Map IFRAME"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,114 @@
+{% capture catItems %}
+  {% for block in section.blocks %}
+    {% if block.settings.img != blank %}
+    <div class="spec-coll-item">
+
+      {% if block.settings.btn != blank and block.settings.btnurl != blank %}
+      <a class="navigate-link" href="{{ block.settings.btnurl }}"></a>
+      {% endif %}
+      
+      {% if block.settings.img != blank %}
+        <figure class="coll-img">
+          <img src="{{ block.settings.img | img_url:"master" }}" />
+        </figure>
+      {% endif %}
+      {% if block.settings.title != blank or block.settings.text != blank %}
+      <div class="content">
+         {% if block.settings.text != blank %}<span class="offer-label">{{ block.settings.text }}</span>{% endif %}
+         {% if block.settings.title != blank %}<h3 class="coll-title">{{ block.settings.title }}</h3>{% endif %}
+      </div>
+      {% endif %}
+      {% if block.settings.btn != blank and block.settings.btnurl != blank %}
+      <a href="{{ block.settings.btnurl }}" class="shop-now-btn">{{ block.settings.btn }} {% render 'right-arrow' %}</a>
+      {% endif %}
+    </div>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% if catItems != blank %}
+<link rel="stylesheet" href="{{ 'special-collection.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'special-collection.css' | asset_url | stylesheet_tag }}</noscript>
+
+<section id="section{{ section.id }}">
+  <div class="page-width">
+    <div class="special-collection-list">
+      {{ catItems }}
+    </div>     
+  </div>
+</section>
+{% endif %}
+ 
+<script defer="defer">
+  $(document).ready(function(){
+
+    if($(window).width() <= 749){
+      
+      $('.special-collection-list').slick({
+        dots: false,
+        infinite: false,
+        arrows: false,
+        speed: 300,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        variableWidth: true       
+     });
+      
+    }
+      
+  });
+</script>
+ 
+
+{% schema %}
+  {
+    "name": "Special Collection",
+    "class": "section-space special-collection-wrapper",
+    "settings": [],
+    "blocks": [
+        {
+          "type": "text",
+          "name": "Category",
+          "limit":2,
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "img",
+              "label": "Image"
+            },
+            { 
+              "type": "text",
+              "id": "text",
+              "label": "Text before Title",
+              "default":"Sale up to 50%"
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Title",
+              "default":"Lorem ipsum dolor sit amet consectetur"
+            },
+            { 
+              "type": "text",
+              "id": "btn",
+              "label": "Button Label",
+              "default":"Shop now"
+            },
+            { 
+              "type": "url",
+              "id": "btnurl",
+              "label": "Url to Navigate"
+            }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Special Collection"        
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}

@@ -1,0 +1,398 @@
+<link rel="stylesheet" href="{{ 'hero-section.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'hero-section.css' | asset_url | stylesheet_tag }}</noscript>
+
+<section id="Banner-{{ section.id }}">
+  <div class="hero-section-list-main banner-height--{{ section.settings.banner_height }}">
+    {%- for block in section.blocks -%}
+      <div class="hero-section-wrapper{% if block.settings.image_half %} with-half-bg{% endif %}{% unless block.settings.title != blank or block.settings.title != blank or block.settings.btn_text != blank  %} no-contents{% endunless %}">
+
+         {% if block.settings.title != blank or block.settings.title != blank or block.settings.btn_text != blank  %}
+            <div class="banner-content-wrapper text-align--{{ block.settings.text_align }} content-alignment--{{ block.settings.content_alignment }}">
+              <div class="page-width">
+                <div class="content-box">
+                  {% if block.settings.title != blank %}
+                     <h2 class="banner-title rich-text__heading rte h1">{{ block.settings.title }}</h2>
+                  {% endif %}  
+            
+                  {% if block.settings.content != blank %}
+                   <div class="content rich-text__text rte">{{ block.settings.content }}</div>
+                  {% endif %}  
+            
+                  {% if block.settings.btn_text != blank %}
+                    <a href="{{ block.settings.btn_url }}" class="button banner-btn">{{ block.settings.btn_text }}</a>
+                  {% endif %}  
+                </div>
+              </div>
+            </div>
+          {% endif %}  
+      
+          {% if block.settings.banner_type == 'image' %}
+          
+          {% capture BannerImg %}
+              {% if block.settings.image != blank %}
+                <div class="banner-images">
+                  {% if block.settings.mobi_image != blank %}
+                    <img src="{{ block.settings.image | img_url: 'master' }}" class="desk-img" />
+                    <img src="{{ block.settings.mobi_image | img_url: 'master' }}" class="mobi-img" />
+                  {% else %}
+                     <img src="{{ block.settings.image | img_url: 'master' }}" />
+                  {% endif %} 
+                </div>
+              {% else %}  
+              <div class="banner__media media placeholder">
+                {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              {% endif %} 
+          {% endcapture %}
+        
+          {% if block.settings.image_full %}
+            {{ BannerImg }}
+          {% else %}
+            <div class="page-width">
+            {{ BannerImg }}
+            </div>
+          {% endif %}
+        
+          {% elsif block.settings.banner_type == 'video' %}  
+          
+          <div class="background-video-wrapper">    
+             <div class="video-background">
+                  {% if block.settings.video_url_mp4 != blank %}         
+                    {{ block.settings.video_url_mp4 | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+                  {% else %}           
+                    {% if block.settings.video_url.type == 'vimeo' %}              
+                      <iframe src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?background=1&autoplay=1&loop=1&byline=0&title=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    {% endif %}
+                  {% endif %} 
+              </div>
+          </div>
+
+         <script>
+           console.clear();
+
+            // 🍋 on DOM loaded
+            document.addEventListener("DOMContentLoaded", event => {
+              console.log("DOM has loaded 🥳");
+              // extract + inject thumbnail inside the DOM
+              initThumbnail();
+              // inject constructed player after 2s
+              initVimeo();
+              /*
+              setTimeout(() => {
+                initVimeo();
+              }, 2000);
+              */
+            });
+            
+            /**
+             * dynamically pull id attribute from the DOM
+             * use the getVimeoId() function whenever the id is needed
+             */
+            
+            // 🍑 getVimeoId() declaration
+            function getVimeoId() {
+              const vimeo = document.getElementsByClassName("vimeo")[0];
+              return vimeo.getAttribute("id");
+            }
+            
+            /**
+             * dynamic thumbnail injection via AJAX request
+             * based on vimeo id json response extraction
+             */
+            
+            // 🍓 initThumbnail() declaration
+            function initThumbnail() {
+              const thumbnail = document.getElementsByClassName("vimeo")[0];
+              // AJAX request setup
+              const request = new XMLHttpRequest();
+              const method = "GET";
+              const url = "https://vimeo.com/api/v2/video/" + getVimeoId() + ".json";
+              // when the request is loaded
+              request.onload = function() {
+                // parse the response
+                const json = JSON.parse(request.responseText);
+                // console.log(json);
+                // extract the thumbnail url from the json response
+                const thumbnailSource = json[0].thumbnail_large;
+                console.log(`thumbnail path is ${thumbnailSource} 🥳`);
+                // create img tag
+                const image = document.createElement("img");
+                // inject json src dynamically into img element
+                image.setAttribute("src", thumbnailSource);
+                image.setAttribute("class", "vimeo");
+                image.setAttribute("alt", "this is a video");
+                // append img element to the div
+                thumbnail.appendChild(image);
+                console.log("thumbnail was created 🥳");
+              }; // end request.onload
+              request.open(method, url);
+              request.send();
+            }
+            
+            /**
+             * A) inject id from the getVimeoId() function into options
+             * B) pass the options variable into the player constructor
+             */
+            
+            // 🍉 initVimeo() declaration
+            function initVimeo() {
+              const vimeo = document.getElementsByClassName("vimeo")[0];
+            
+              // player options
+              const options = {
+                id: getVimeoId(),
+                autoplay: true,
+                autopause: 0,
+                loop: true,
+                muted: true, // autoplay on mobile
+                background: true, // remove all controls
+                responsive: true, // experimental
+                quality: "1080p"
+              };
+            
+              // player constructor initialisation
+              const player = new Vimeo.Player(vimeo, options);
+            
+              player.loadVideo(getVimeoId()).then(function(id) {
+                console.log(`video ${id} has loaded 🥳`);
+              });
+            
+              player.on("play", event => {
+                console.log("video is playing ❤️");
+              });
+            } // end of initVimeo()
+            
+            // go get a 🍭
+         </script>
+        
+         {% endif %}         
+        
+           {% style %}
+            .hero-section-wrapper .banner-content-wrapper .banner-title,
+            .hero-section-wrapper .banner-content-wrapper .content,
+            .hero-section-wrapper .banner-content-wrapper .content p { color:{{ block.settings.text_color | default: "#121212" }}; }
+        
+            .hero-section-wrapper .banner-content-wrapper .banner-btn { color:{{ block.settings.btn_text_color | default: "#ffffff" }};
+                                                                       background:{{ block.settings.btn_bg_color | default: "#121212" }}; }
+            .hero-section-wrapper .banner-content-wrapper .banner-btn:hover { color:{{ block.settings.btn_text_color_hover | default: "#ffffff" }};
+                                                                       background:{{ block.settings.btn_bg_color_hover | default: "#252222" }}; }
+        
+            {% if block.settings.image_half %}
+              .hero-section-wrapper.with-half-bg .banner-content-wrapper {  background:{{ block.settings.half_bg_color | default: "#121212" }}; }
+            {% endif %}
+            
+          {% endstyle %}
+  
+      </div>
+    {%- endfor -%}  
+  </div>
+
+  
+</section>
+
+
+{% schema %}
+  {
+    "name": "Hero Section",
+    "class": "hero-section-main-wrapper",
+    "settings": [
+       {
+          "type": "select",
+          "id": "banner_height",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }          
+          ],
+          "default": "small",
+          "label": "Banner Height"
+        }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Hero banner",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "select",
+            "id": "banner_type",
+            "options": [
+              {
+                "value": "image",
+                "label": "Image"
+              },
+              {
+                "value": "video",
+                "label": "Video"
+              }          
+            ],
+            "default": "image",
+            "label": "Banner type"
+          },
+          {
+            "type": "header",
+            "content": "Banner Images"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Desktop Image"
+          },
+          { 
+            "type": "image_picker",
+            "id": "mobi_image",
+            "label": "Mobile Image"
+          },
+          {
+            "type": "checkbox",
+            "id": "image_full",
+            "default": false,
+            "label": "Image full screen"
+          },
+          {
+            "type": "checkbox",
+            "id": "image_half",
+            "default": false,
+            "label": "Banner with half background"
+          },
+          {
+            "type": "color",
+            "id": "half_bg_color",       
+            "label": "half background Color",
+            "default": "#121212"
+          },
+          {
+            "type": "header",
+            "content": "Background video"
+          },
+          {
+              "type": "video_url",
+              "id": "video_url",
+              "accept": ["vimeo"],
+              "label": "Video"         
+          },
+          {
+              "type": "video",
+              "id": "video_url_mp4",
+              "label": "Video Mp4"
+          },
+          {
+            "type": "header",
+            "content": "Banner Contents"
+          },
+          {
+            "type": "text",
+            "id": "title",       
+            "label": "title"         
+          },
+          {
+            "type": "richtext",
+            "id": "content",       
+            "label": "content"         
+          },
+          {
+            "type": "color",
+            "id": "text_color",       
+            "label": "Text Color",
+            "default": "#121212"
+          },
+          {
+            "type": "select",
+            "id": "content_alignment",
+            "label": "Content alignment",
+            "options": [
+              {
+                "value": "top",
+                "label": "Top"
+              },
+              {
+                "value": "middle",
+                "label": "Middle"
+              },
+              {
+                "value": "bottom",
+                "label": "Bottom"
+              }
+            ],
+            "default": "middle"
+          },
+          {
+            "type": "select",
+            "id": "text_align",
+            "label": "Text Align",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          },
+          {
+            "type": "url",
+            "id": "btn_url",       
+            "label": "Button link"         
+          },
+          {
+            "type": "text",
+            "id": "btn_text",       
+            "label": "Button Text"         
+          },
+          {
+            "type": "color",
+            "id": "btn_text_color",       
+            "label": "Button Text Color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "btn_bg_color",       
+            "label": "Button Background Color",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "btn_text_color_hover",       
+            "label": "Button Text  Hover Color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "btn_bg_color_hover",       
+            "label": "Button Background Hover Color",
+            "default": "#121212"
+          }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Hero Section"        
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

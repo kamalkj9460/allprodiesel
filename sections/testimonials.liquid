@@ -1,0 +1,156 @@
+{% assign size = 0 %}
+{% capture testimonials %}
+  {% for block in section.blocks %}
+    {% if block.settings.name != blank and block.settings.desc != blank %}
+      {% assign size = size | plus:1 %}
+      <div class="testi-item">
+      {% assign rating = block.settings.rating | plus:0 %}
+        <div class="review-star" data="{{ rating }}">{% if block.settings.rating != 'none' %}{% render 'five-star' with rating %}{% endif %}</div>
+        {% if block.settings.desc != blank %}
+            <div class="review-text">{{ block.settings.desc }}</div>
+        {% endif %}
+        {% if block.settings.name != blank %}<div class="author">{{ block.settings.name }}</div>{% endif %}
+       </div>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% if testimonials != blank %}
+<link rel="stylesheet" href="{{ 'client-testimonials.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'client-testimonials.css' | asset_url | stylesheet_tag }}</noscript>
+
+<section id="section{{ section.id }}">
+  <div class="page-width">
+
+  {% if section.settings.title != blank %}
+      <div class="sec-head">
+         <h2 class="sec-title">{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+
+     <div class="testimonials-list-wrapper">
+
+          <div class="slide-arrows{% if size <= 3 %} hidden{% endif %}">
+             <button class="slide-arrow prev">{% render 'icon-prev' %}</button>
+             <button class="slide-arrow next">{% render 'icon-next' %}</button>
+          </div>
+
+          <div class="testimonials-wrapper{% if size > 3 %} enabled{% endif %}">
+          {{ testimonials }}
+          </div>
+     </div>         
+  </div>
+</section>
+
+<script defer="defer">
+  
+  $(document).ready(function(){
+  if($(window).width() > 992){
+     $('.testimonials-wrapper.enabled').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        variableWidth: true,
+        prevArrow: $('#section{{ section.id }} .prev'),
+        nextArrow: $('#section{{ section.id }} .next'),
+        responsive: [
+          {
+            breakpoint: 993,
+            settings:'unslick'
+             
+          }
+        ]
+     });
+  }else{
+     $('.testimonials-wrapper').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToScroll: 1,
+        variableWidth: true,
+        prevArrow: $('#section{{ section.id }} .prev'),
+        nextArrow: $('#section{{ section.id }} .next'),
+     });
+  }
+
+  });
+  
+</script>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Testimonials",
+    "class": "section-padding client-testimonials-wrapper",
+    "settings": [
+      { 
+        "type": "html",
+        "id": "title",
+        "label": "Title",
+        "default":"What <span>brand</span><br> <span>Customers</span>Are Saying",
+        "info":"Add <span></span> tag for different text color"
+      }
+    ],
+    "blocks": [
+        {
+          "type": "text",
+          "name": "Testimonial",
+          "settings": [
+            {
+              "type": "select",
+              "id": "rating",
+              "label": "Rating Star",
+              "options":[
+                {
+                  "value":"none",
+                  "label":"None"
+                },
+                {
+                  "value":"1",
+                  "label":"1"
+                },
+                {
+                  "value":"2",
+                  "label":"2"
+                },
+                {
+                  "value":"3",
+                  "label":"3"
+                },
+                {
+                  "value":"4",
+                  "label":"4"
+                },
+                {
+                  "value":"5",
+                  "label":"5"
+                }
+              ],
+              "default":"5"
+            },
+            {
+              "type": "textarea",
+              "id": "desc",
+              "label": "Description",
+              "default":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut"
+            },
+            { 
+              "type": "text",
+              "id": "name",
+              "label": "Author Name"
+            }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Testimonials"        
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}

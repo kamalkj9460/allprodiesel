@@ -1,0 +1,84 @@
+{% capture serviceItems %}
+  {% for block in section.blocks %}
+    {% if block.settings.title != blank or block.settings.desc != blank %}
+    <div class="box-item">
+      {% if block.settings.icon != blank %}
+       <i class="item-icon">{{ block.settings.icon }}</i>
+      {% endif %}
+       {% if block.settings.title != blank %}<h3 class="box-title">{{ block.settings.title }}</h3>{% endif %}
+      {% if block.settings.desc != blank %}
+       <div class="content">
+        {{ block.settings.desc }}
+       </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% if serviceItems != blank %}
+<link rel="stylesheet" href="{{ 'service-box.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'service-box.css' | asset_url | stylesheet_tag }}</noscript>
+<style>
+  #Banner-{{ section.id }}{background:{{ section.settings.bgcolor }};}
+</style>
+<section id="Banner-{{ section.id }}">
+  <div class="page-width">
+
+      <div class="service-box">
+        {{ serviceItems }}
+      </div>
+         
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Service Box",
+    "class": "service-box-wrapper",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bgcolor",
+        "label": "Background Color",
+        "default": "#AA3028"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Service",
+        "limit": 3,
+        "settings": [
+          { 
+            "type": "textarea",
+            "id": "icon",
+            "label": "SVG Icon"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Service Box"        
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

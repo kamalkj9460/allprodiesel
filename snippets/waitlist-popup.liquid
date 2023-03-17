@@ -1,0 +1,61 @@
+{% if section.settings.wp_title != blank or section.settings.wp_text != blank %}
+<style>
+  
+</style>
+<div class="waitlist-popup-main" data-pdp-waitlist-popup>
+  <div class="waitlist-popup-overlay" data-pdp-waitlist-popup-close></div>
+  <div class="waitlist-popup-wrap">
+    <button class="wp-btn-close" data-pdp-waitlist-popup-close>{% render 'icon-waitlist-popup-close' %}</button>
+    <div class="waitlist-popup-content">
+      {% if section.settings.wp_title != blank %}
+        <h5 class="waitlist-popup-title">{{ section.settings.wp_title }}</h5>
+      {% endif %}
+      {% if section.settings.wp_text != blank %}
+        <div class="waitlist-popup-text">{{ section.settings.wp_text }}</div>
+      {% endif %}
+    </div>
+
+    <form id="email_signup" class="klaviyo_styling klaviyo_gdpr_embed_{{ klaviyoListId }}" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" _novalidate="novalidate" data-klaviyo-notify-form>
+      <input type="hidden" name="g" value="{{ klaviyoListId }}">
+      <input type="hidden" name="$fields" value="Variant_title">
+      <input type="hidden" name="Variant_title" value="{{ product.selected_or_first_available_variant.title }}">
+      <div class="klaviyo_field_group kgrid">
+        <div class="klaviyo_field _email">
+          <input class="input-item" type="email" value="" name="email" id="k_id_email" placeholder="E-mail" required="required" autocomplete="off">
+        </div>
+      </div>
+      <div class="klaviyo_messages">
+        <div class="success_message" style="display:none;"></div>
+        <div class="error_message" style="display:none;"></div>
+      </div>
+      <div class="klaviyo_form_actions btn-actions">
+        <button type="submit" class="link underlined-link link-btn klaviyo_submit_button navigable">Receive Email</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  let joiWaitlists = document.querySelectorAll("[data-join-waitlist-btn]");
+  if(joiWaitlists.length > 0){
+    joiWaitlists.forEach(open => {
+              open.addEventListener('click', function(evt){
+                evt.preventDefault();
+                let waitlistPopup = document.querySelector("[data-pdp-waitlist-popup]");
+                if(waitlistPopup) waitlistPopup.classList.add("active");
+                document.querySelector("body").classList.add("overflow-hidden");
+              });
+    });
+  }
+  
+  let waitPopupClose = document.querySelectorAll("[data-pdp-waitlist-popup-close]");
+  if(waitPopupClose.length > 0){
+    waitPopupClose.forEach(close => {
+              close.addEventListener('click', function(){
+                let waitlistPopup = this.closest("[data-pdp-waitlist-popup]");
+                if(waitlistPopup) waitlistPopup.classList.remove("active");
+                document.querySelector("body").classList.remove("overflow-hidden");
+              });
+    });
+  }
+</script>
+{% endif %}
